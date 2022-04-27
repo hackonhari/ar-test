@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script
+        src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
+    <script
+        src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+    <script>
+        window.onload = function () {
+            const marker = document
+                .querySelector("#animated-marker");
+            marker.addEventListener("click", function (e) {
+                console.log(e.target)
+                alert("Hi from marker!");
+            });
+            const image1 = document
+                .querySelector("#image2");
+            image1.addEventListener("click", function (e) {
+                console.log(e.target)
+                alert("Hi from image1!");
+            });
+            // const image2 = document
+            //     .querySelector("#image1");
+            // image2.addEventListener("click", function (e) {
+            //     console.log(e.target);
+            //     alert("Hi from image2!");
+            // });
+        };
+
+    </script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+    <a-scene vr-mode-ui="enabled: false;" loading-screen="enabled: false;"
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;" id="scene" embedded gesture-detector>
+        <a-marker id="animated-marker" type="pattern" preset="custom" url="assets/marker.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="markerA">
+            <a-image src="assets/asset.png" scale="0.4 0.4 0.4" position="0 0 0" class="clickable" id="image1"
+                rotation="-90 0 0" gesture-handler>
+            </a-image>
+            <a-image src="assets/asset.png" scale="0.4 0.4 0.4" position="0.2 1 0" class="clickable-2" id="image2"
+                rotation="-90 0 0" gesture-handler>
+            </a-image>
+
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+
+</body>
+
+</html>
